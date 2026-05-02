@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<div class="dashboard-layout">
+  <!-- Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="assets/logo.png" alt="Logo" class="topbar-logo" />
+      <span class="topbar-title">Clínica</span>
+    </div>
+    <button class="btn-logout" (click)="logout()">
+      <span class="material-icons">logout</span>
+      <span class="logout-label">Cerrar sesión</span>
+    </button>
+  </header>
+
+  <!-- Contenido -->
+  <main class="main-content">
+    <h1 class="welcome">Panel principal</h1>
+    <p class="welcome-sub">Selecciona un módulo para continuar</p>
+
+    @if (loading) {
+      <div class="loading">Cargando módulos...</div>
+    } @else {
+      <div class="modulos-grid">
+        @for (mod of modulos; track mod.mod_id) {
+          <div class="modulo-card" (click)="irA(mod)">
+            <span class="material-icons modulo-icono">{{ mod.mod_icono }}</span>
+            <span class="modulo-nombre">{{ mod.mod_nombre }}</span>
+          </div>
+        }
+      </div>
+    }
+  </main>
+</div>
