@@ -1,4 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light;
+  @include mat.theme((
+    color: (
+      primary: mat.$red-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +20,5 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
 }

@@ -1,0 +1,81 @@
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">
+      <span class="material-icons">people</span>
+      Pacientes
+    </h1>
+    <button mat-fab extended color="primary" (click)="abrirModal()">
+      <mat-icon>add</mat-icon>
+      Nuevo paciente
+    </button>
+  </div>
+
+  <div class="toolbar">
+    <mat-form-field appearance="outline" class="buscador">
+      <mat-label>Buscar paciente</mat-label>
+      <input
+        matInput
+        [(ngModel)]="busqueda"
+        (ngModelChange)="filtrar()"
+        placeholder="Nombre, teléfono o correo"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  @if (loading) {
+    <div class="spinner-wrapper">
+      <mat-spinner diameter="48" color="primary" />
+    </div>
+  } @else {
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="clientesFiltrados" class="clinica-table">
+        <!-- Nombre -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Paciente</th>
+          <td mat-cell *matCellDef="let c">
+            {{ c.cli_apellido_pat }} {{ c.cli_apellido_mat }} {{ c.cli_nombre }}
+          </td>
+        </ng-container>
+
+        <!-- Teléfono -->
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+          <td mat-cell *matCellDef="let c">{{ c.cli_telefono ?? '—' }}</td>
+        </ng-container>
+
+        <!-- Correo -->
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef>Correo</th>
+          <td mat-cell *matCellDef="let c">{{ c.cli_correo ?? '—' }}</td>
+        </ng-container>
+
+        <!-- Responsable -->
+        <ng-container matColumnDef="responsable">
+          <th mat-header-cell *matHeaderCellDef>Responsable</th>
+          <td mat-cell *matCellDef="let c">{{ c.responsable_nombre ?? '—' }}</td>
+        </ng-container>
+
+        <!-- Acciones -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let c">
+            <button mat-icon-button color="primary" matTooltip="Editar" (click)="abrirModal(c)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="Eliminar" (click)="eliminar(c)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+      </table>
+
+      @if (clientesFiltrados.length === 0) {
+        <div class="empty">No se encontraron pacientes.</div>
+      }
+    </div>
+  }
+</div>

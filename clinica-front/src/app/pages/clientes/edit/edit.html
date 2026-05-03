@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>
+  <mat-icon>{{ esEdicion ? 'edit' : 'person_add' }}</mat-icon>
+  {{ esEdicion ? 'Editar paciente' : 'Nuevo paciente' }}
+</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre(s) *</mat-label>
+      <input matInput formControlName="cli_nombre" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row dos-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido paterno *</mat-label>
+      <input matInput formControlName="cli_apellido_pat" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido materno</mat-label>
+      <input matInput formControlName="cli_apellido_mat" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row dos-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="cli_telefono" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput formControlName="cli_correo" type="email" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección</mat-label>
+      <textarea matInput formControlName="cli_direccion" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Responsable (para menores de edad)</mat-label>
+      <mat-select formControlName="cli_responsable">
+        <mat-option [value]="null">— Ninguno —</mat-option>
+        @for (adulto of adultos; track adulto.cli_id) {
+          <mat-option [value]="adulto.cli_id">
+            {{ adulto.cli_apellido_pat }} {{ adulto.cli_apellido_mat }} {{ adulto.cli_nombre }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="guardar()"
+    [disabled]="form.invalid || guardando"
+  >
+    {{ guardando ? 'Guardando...' : esEdicion ? 'Guardar cambios' : 'Crear paciente' }}
+  </button>
+</mat-dialog-actions>

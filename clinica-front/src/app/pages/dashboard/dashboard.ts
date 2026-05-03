@@ -42,6 +42,12 @@ export class Dashboard implements OnInit {
    }
 
    irA(modulo: Modulo): void {
-      console.log('Navegando a:', modulo.mod_nombre);
+      const rutas: Record<string, string> = {
+         'Pacientes':   '/pacientes',
+         'Citas':       '/citas',
+         'Expedientes': '/expedientes',
+      };
+      const ruta = rutas[modulo.mod_nombre];
+      if (ruta) this.router.navigate([ruta]);
    }
 }
