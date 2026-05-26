@@ -1,0 +1,222 @@
+<div class="form-scroll" [formGroup]="form">
+
+  <!-- Datos generales -->
+  <h3 class="seccion">Datos del paciente</h3>
+
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Representante legal</mat-label>
+    <input matInput formControlName="representante" />
+  </mat-form-field>
+
+  <div class="grid-3">
+    <mat-form-field appearance="outline">
+      <mat-label>N.H.C.</mat-label>
+      <input matInput formControlName="nhc" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Ocupación</mat-label>
+      <input matInput formControlName="ocupacion" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de nacimiento</mat-label>
+      <input matInput formControlName="fecha_nac" placeholder="dd/mm/aaaa" />
+    </mat-form-field>
+  </div>
+
+  <div class="grid-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Edad</mat-label>
+      <input matInput formControlName="edad" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Sexo</mat-label>
+      <input matInput formControlName="sexo" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Talla</mat-label>
+      <input matInput formControlName="talla" />
+    </mat-form-field>
+  </div>
+
+  <div class="grid-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input matInput formControlName="peso" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>P.A.</mat-label>
+      <input matInput formControlName="pa" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>F.C.</mat-label>
+      <input matInput formControlName="fc" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>F.R.</mat-label>
+      <input matInput formControlName="fr" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Motivo de consulta</mat-label>
+    <textarea matInput formControlName="motivo_consulta" rows="2"></textarea>
+  </mat-form-field>
+
+  <mat-divider />
+  <h3 class="seccion">I. Marque la respuesta correcta</h3>
+
+  <div class="pregunta">
+    <mat-checkbox formControlName="p1">1. ¿Es buena su salud en general?</mat-checkbox>
+  </div>
+  <div class="pregunta">
+    <mat-checkbox formControlName="p2">2. ¿Ha existido algún cambio en su salud en los últimos años?</mat-checkbox>
+  </div>
+  <div class="pregunta con-detalle">
+    <mat-checkbox formControlName="p3">3. ¿Ha estado hospitalizado o ha tenido una enfermedad grave en los últimos 3 años?</mat-checkbox>
+    <mat-form-field appearance="outline" class="detalle">
+      <mat-label>¿Por qué?</mat-label>
+      <input matInput formControlName="p3_cual" />
+    </mat-form-field>
+  </div>
+  <div class="pregunta con-detalle">
+    <mat-checkbox formControlName="p4">4. ¿Se encuentra actualmente en tratamiento médico?</mat-checkbox>
+    <mat-form-field appearance="outline" class="detalle">
+      <mat-label>¿Por qué?</mat-label>
+      <input matInput formControlName="p4_cual" />
+    </mat-form-field>
+    <div class="grid-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha último examen médico</mat-label>
+        <input matInput formControlName="p4_fecha_medico" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha última cita dental</mat-label>
+        <input matInput formControlName="p4_fecha_dental" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="pregunta con-detalle">
+    <mat-checkbox formControlName="p5">5. ¿Ha tenido problema con algún tratamiento dental en el pasado?</mat-checkbox>
+    <mat-form-field appearance="outline" class="detalle">
+      <mat-label>¿Por qué?</mat-label>
+      <input matInput formControlName="p5_cual" />
+    </mat-form-field>
+  </div>
+  <div class="pregunta">
+    <mat-checkbox formControlName="p6">6. ¿Tiene algún dolor ahora?</mat-checkbox>
+  </div>
+
+  <mat-divider />
+  <h3 class="seccion">II. ¿Ha notado?</h3>
+
+  <div class="grid-checks-2col">
+    <mat-checkbox formControlName="p7">7. ¿Dolor en el pecho (Angina)?</mat-checkbox>
+    <mat-checkbox formControlName="p18">18. ¿Mareos?</mat-checkbox>
+    <mat-checkbox formControlName="p8">8. ¿Los tobillos hinchados?</mat-checkbox>
+    <mat-checkbox formControlName="p19">19. ¿Ruidos o zumbidos en los oídos?</mat-checkbox>
+    <mat-checkbox formControlName="p9">9. ¿Falta de aliento?</mat-checkbox>
+    <mat-checkbox formControlName="p20">20. ¿Dolores de cabeza?</mat-checkbox>
+    <mat-checkbox formControlName="p10">10. ¿Pérdida de peso, fiebre, sudor en la noche?</mat-checkbox>
+    <mat-checkbox formControlName="p21">21. ¿Desmayos?</mat-checkbox>
+    <mat-checkbox formControlName="p11">11. ¿Tos persistente o tos con sangre?</mat-checkbox>
+    <mat-checkbox formControlName="p22">22. ¿Vista borrosa?</mat-checkbox>
+    <mat-checkbox formControlName="p12">12. ¿Problemas de sangrado, moretones?</mat-checkbox>
+    <mat-checkbox formControlName="p23">23. ¿Convulsiones?</mat-checkbox>
+    <mat-checkbox formControlName="p13">13. ¿Problemas nasales (sinusitis)?</mat-checkbox>
+    <mat-checkbox formControlName="p24">24. ¿Sed excesiva?</mat-checkbox>
+    <mat-checkbox formControlName="p14">14. ¿Dificultad al tragar?</mat-checkbox>
+    <mat-checkbox formControlName="p25">25. ¿Orina con frecuencia?</mat-checkbox>
+    <mat-checkbox formControlName="p15">15. ¿Diarrea, estreñimiento, sangre en las heces?</mat-checkbox>
+    <mat-checkbox formControlName="p26">26. ¿Boca seca?</mat-checkbox>
+    <mat-checkbox formControlName="p16">16. ¿Vómitos frecuentes, náuseas?</mat-checkbox>
+    <mat-checkbox formControlName="p27">27. ¿Ictericia?</mat-checkbox>
+    <mat-checkbox formControlName="p17">17. ¿Dificultad para orinar, sangre en la orina?</mat-checkbox>
+    <mat-checkbox formControlName="p28">28. ¿Dolor o rigidez en las articulaciones?</mat-checkbox>
+  </div>
+
+  <mat-divider />
+  <h3 class="seccion">III. ¿Tiene o ha tenido?</h3>
+
+  <div class="grid-checks-2col">
+    <mat-checkbox formControlName="p29">29. ¿Enfermedades del corazón?</mat-checkbox>
+    <mat-checkbox formControlName="p40">40. ¿SIDA?</mat-checkbox>
+    <mat-checkbox formControlName="p30">30. ¿Infarto o defectos en el corazón?</mat-checkbox>
+    <mat-checkbox formControlName="p41">41. ¿Tumores, cáncer?</mat-checkbox>
+    <mat-checkbox formControlName="p31">31. ¿Soplos en el corazón?</mat-checkbox>
+    <mat-checkbox formControlName="p42">42. ¿Artritis, reumas?</mat-checkbox>
+    <mat-checkbox formControlName="p32">32. ¿Fiebre reumática?</mat-checkbox>
+    <mat-checkbox formControlName="p43">43. ¿Enfermedades de los ojos?</mat-checkbox>
+    <mat-checkbox formControlName="p33">33. ¿Apoplejía, endurecimiento de las arterias?</mat-checkbox>
+    <mat-checkbox formControlName="p44">44. ¿Enfermedades de la piel?</mat-checkbox>
+    <mat-checkbox formControlName="p34">34. ¿Presión sanguínea alta?</mat-checkbox>
+    <mat-checkbox formControlName="p45">45. ¿Anemia?</mat-checkbox>
+    <mat-checkbox formControlName="p35">35. ¿Asma, tuberculosis, enfermedades pulmonares?</mat-checkbox>
+    <mat-checkbox formControlName="p46">46. ¿Enfermedades venéreas (sífilis o gonorrea)?</mat-checkbox>
+    <mat-checkbox formControlName="p36">36. ¿Hepatitis u otras enfermedades del hígado?</mat-checkbox>
+    <mat-checkbox formControlName="p47">47. ¿Herpes?</mat-checkbox>
+    <mat-checkbox formControlName="p37">37. ¿Problemas de estómago, úlceras?</mat-checkbox>
+    <mat-checkbox formControlName="p48">48. ¿Enfermedades renales, vejiga?</mat-checkbox>
+    <mat-checkbox formControlName="p38">38. ¿Alergias a remedios, comidas, medicamentos, látex?</mat-checkbox>
+    <mat-checkbox formControlName="p49">49. ¿Enfermedades de tiroides o glándulas suprarrenales?</mat-checkbox>
+    <mat-checkbox formControlName="p39">39. ¿Familiares con diabetes, problemas de corazón, tumores?</mat-checkbox>
+    <mat-checkbox formControlName="p50">50. ¿Diabetes?</mat-checkbox>
+  </div>
+
+  <mat-divider />
+  <h3 class="seccion">IV. ¿Tiene o ha tenido?</h3>
+
+  <div class="grid-checks-2col">
+    <mat-checkbox formControlName="p51">51. ¿Tratamiento psiquiátrico?</mat-checkbox>
+    <mat-checkbox formControlName="p56">56. ¿Hospitalizaciones?</mat-checkbox>
+    <mat-checkbox formControlName="p52">52. ¿Tratamientos de radiación?</mat-checkbox>
+    <mat-checkbox formControlName="p57">57. ¿Transfusiones de sangre?</mat-checkbox>
+    <mat-checkbox formControlName="p53">53. ¿Quimioterapia?</mat-checkbox>
+    <mat-checkbox formControlName="p58">58. ¿Cirugías?</mat-checkbox>
+    <mat-checkbox formControlName="p54">54. ¿Válvula artificial del corazón?</mat-checkbox>
+    <mat-checkbox formControlName="p59">59. ¿Marcapasos?</mat-checkbox>
+    <mat-checkbox formControlName="p55">55. ¿Articulación artificial?</mat-checkbox>
+    <mat-checkbox formControlName="p60">60. ¿Lentes de contacto?</mat-checkbox>
+  </div>
+
+  <mat-divider />
+  <h3 class="seccion">V. ¿Está tomando?</h3>
+
+  <div class="grid-checks-2col">
+    <mat-checkbox formControlName="p61">61. ¿Drogas de uso recreativo?</mat-checkbox>
+    <mat-checkbox formControlName="p63">63. ¿Tabaco de cualquier tipo?</mat-checkbox>
+    <mat-checkbox formControlName="p62">62. ¿Remedios o medicamentos sin receta?</mat-checkbox>
+    <mat-checkbox formControlName="p64">64. ¿Alcohol (bebidas alcohólicas)?</mat-checkbox>
+  </div>
+
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Medicamento o sustancia que desee mencionar</mat-label>
+    <input matInput formControlName="medicamentos_extra" />
+  </mat-form-field>
+
+  <mat-divider />
+  <h3 class="seccion">Solo para mujeres</h3>
+
+  <div class="grid-checks-1col">
+    <mat-checkbox formControlName="p65">65. ¿Está o podría estar embarazada o dando pecho?</mat-checkbox>
+    <mat-checkbox formControlName="p66">66. ¿Está tomando pastillas anticonceptivas?</mat-checkbox>
+  </div>
+
+  <mat-divider />
+  <h3 class="seccion">VI. Para todos los pacientes</h3>
+
+  <div class="pregunta con-detalle">
+    <mat-checkbox formControlName="p67">67. ¿Tiene o ha tenido alguna enfermedad o problema médico no mencionado?</mat-checkbox>
+    <mat-form-field appearance="outline" class="detalle">
+      <mat-label>Explique</mat-label>
+      <input matInput formControlName="p67_cual" />
+    </mat-form-field>
+  </div>
+
+  <div class="acciones">
+    <button mat-button (click)="onCancelar.emit()">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()">
+      Guardar y generar PDF
+    </button>
+  </div>
+
+</div>

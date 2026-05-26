@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Modulo, Cliente, Expediente, ExpedienteCliente
+from .models import Modulo, Cliente, Expediente
 
 class ModuloSerializer(serializers.ModelSerializer):
    class Meta:
@@ -28,18 +28,19 @@ class ClienteSerializer(serializers.ModelSerializer):
          }
          for m in obj.menores.all()
       ]
-
+   
 
 class ExpedienteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model  = Expediente
-        fields = '__all__'
-
-
-class ExpedienteClienteSerializer(serializers.ModelSerializer):
-   cliente     = ClienteSerializer(source='expcli_cli', read_only=True)
-   expediente  = ExpedienteSerializer(source='expcli_exp', read_only=True)
+   cliente_nombre = serializers.SerializerMethodField()
+   tipo_display   = serializers.SerializerMethodField()
 
    class Meta:
-      model  = ExpedienteCliente
+      model  = Expediente
       fields = '__all__'
+
+   def get_cliente_nombre(self, obj):
+      c = obj.expcli_cliente
+      return f'{c.cli_nombre} {c.cli_apellido_pat} {c.cli_apellido_mat or ""}'.strip()
+
+   def get_tipo_display(self, obj):
+      return obj.get_expcli_tipo_display()

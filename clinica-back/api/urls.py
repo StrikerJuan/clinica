@@ -2,8 +2,7 @@ from django.urls import path
 from .views import (
    ModuloListView,
    ClienteListView, ClienteDetailView,
-   ExpedienteListView,
-   ExpedienteClienteListView,
+   ExpedienteListView, ExpedienteDetailView
 )
 
 urlpatterns = [
@@ -11,5 +10,5 @@ urlpatterns = [
    path('clientes/',             ClienteListView.as_view()),
    path('clientes/<int:pk>/',    ClienteDetailView.as_view()),
    path('expedientes/',          ExpedienteListView.as_view()),
-   path('expedientes-clientes/', ExpedienteClienteListView.as_view()),
+   path('expedientes/<int:pk>/', ExpedienteDetailView.as_view()),
 ]

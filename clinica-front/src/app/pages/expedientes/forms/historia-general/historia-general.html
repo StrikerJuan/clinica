@@ -1,0 +1,124 @@
+<div class="form-scroll">
+
+  <h3 class="seccion">Higiene dental</h3>
+  <div [formGroup]="form">
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>¿Padece de dolor dental?</mat-label>
+      <input matInput formControlName="dolor_dental" />
+    </mat-form-field>
+
+    <div class="fila-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Cepillado (veces/día)</mat-label>
+        <input matInput type="number" formControlName="cepillado_veces" />
+      </mat-form-field>
+      <mat-checkbox formControlName="hilo_dental">Hilo dental</mat-checkbox>
+      <mat-checkbox formControlName="enjuague">Enjuague bucal</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Pasta dental (¿cuál?)</mat-label>
+      <input matInput formControlName="pasta_dental" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>¿Se encuentra bajo tratamiento médico?</mat-label>
+      <textarea matInput formControlName="tratamiento_medico" rows="2"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Alergias</mat-label>
+      <input matInput formControlName="alergias" />
+    </mat-form-field>
+
+    <mat-divider />
+    <h3 class="seccion">Antecedentes hereditarios y familiares</h3>
+
+    <div class="grid-2">
+      <mat-form-field appearance="outline"><mat-label>Diabetes</mat-label><input matInput formControlName="ah_diabetes" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Cardiopatías</mat-label><input matInput formControlName="ah_cardiopatias" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Tuberculosis</mat-label><input matInput formControlName="ah_tuberculosis" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Hemofilia</mat-label><input matInput formControlName="ah_hemofilia" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Hipertensión</mat-label><input matInput formControlName="ah_hipertension" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Cáncer</mat-label><input matInput formControlName="ah_cancer" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Alergias</mat-label><input matInput formControlName="ah_alergias" /></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Epilepsia</mat-label><input matInput formControlName="ah_epilepsia" /></mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Otras</mat-label>
+      <input matInput formControlName="ah_otras" />
+    </mat-form-field>
+
+    <mat-divider />
+    <h3 class="seccion">Antecedentes personales patológicos</h3>
+
+    <div class="grid-checks">
+      <mat-checkbox formControlName="ap_diabetes">Diabetes</mat-checkbox>
+      <mat-checkbox formControlName="ap_infarto">Infarto de miocardio</mat-checkbox>
+      <mat-checkbox formControlName="ap_transfusiones">Transfusiones</mat-checkbox>
+      <mat-checkbox formControlName="ap_hepatitis">Hepatitis</mat-checkbox>
+      <mat-checkbox formControlName="ap_nefropatias">Nefropatías</mat-checkbox>
+      <mat-checkbox formControlName="ap_artritis">Artritis</mat-checkbox>
+      <mat-checkbox formControlName="ap_hipertension">Hipertensión</mat-checkbox>
+      <mat-checkbox formControlName="ap_acv">Acc. Cerebrovasculares</mat-checkbox>
+      <mat-checkbox formControlName="ap_nerviosismo">Nerviosismo</mat-checkbox>
+      <mat-checkbox formControlName="ap_cardiovascular">Enf. Cardiovascular</mat-checkbox>
+      <mat-checkbox formControlName="ap_anemia">Anemia</mat-checkbox>
+      <mat-checkbox formControlName="ap_asma">Asma</mat-checkbox>
+      <mat-checkbox formControlName="ap_adicciones">Adicciones</mat-checkbox>
+      <mat-checkbox formControlName="ap_alergias">Alergias</mat-checkbox>
+      <mat-checkbox formControlName="ap_ets">Enf. de Transmisión Sexual</mat-checkbox>
+      <mat-checkbox formControlName="ap_hemofilia">Hemofilia</mat-checkbox>
+      <mat-checkbox formControlName="ap_quirurgicos">Quirúrgicos</mat-checkbox>
+      <mat-checkbox formControlName="ap_epilepsia">Epilepsia</mat-checkbox>
+      <mat-checkbox formControlName="ap_traumaticos">Traumáticos</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Observaciones patológicas</mat-label>
+      <textarea matInput formControlName="ap_obs" rows="2"></textarea>
+    </mat-form-field>
+
+    <mat-divider />
+    <h3 class="seccion">Motivo de consulta</h3>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Motivo de consulta</mat-label>
+      <input matInput formControlName="motivo_consulta" />
+    </mat-form-field>
+
+    <mat-divider />
+    <h3 class="seccion">Estado bucal general</h3>
+
+    <div class="fila-checks">
+      <mat-checkbox formControlName="sarro">Presencia de sarro</mat-checkbox>
+      <mat-checkbox formControlName="enf_periodontal">Enfermedad Periodontal</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Diagnóstico presuntivo</mat-label>
+      <textarea matInput formControlName="diagnostico" rows="2"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Plan de tratamiento</mat-label>
+      <textarea matInput formControlName="plan_tratamiento" rows="2"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput formControlName="observaciones" rows="2"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="acciones">
+    <button mat-button (click)="onCancelar.emit()">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()">
+      Guardar y generar PDF
+    </button>
+  </div>
+
+</div>

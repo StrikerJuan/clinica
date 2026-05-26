@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>
+  <mat-icon>folder_shared</mat-icon>
+  Nuevo Expediente
+</h2>
+
+<mat-dialog-content>
+
+  <!-- Paso 1: Seleccionar paciente y tipo -->
+  @if (!tipoActual) {
+    <div class="selector-wrap" [formGroup]="form">
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Paciente *</mat-label>
+        <mat-select formControlName="cliente" (selectionChange)="seleccionarCliente($event.value)">
+          @for (c of data.clientes; track c.cli_id) {
+            <mat-option [value]="c.cli_id">
+              {{ c.cli_apellido_pat }} {{ c.cli_apellido_mat }} {{ c.cli_nombre }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Tipo de documento *</mat-label>
+        <mat-select formControlName="tipo">
+          @for (t of tiposDocs; track t.value) {
+            <mat-option [value]="t.value">{{ t.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  }
+
+  <!-- Historia Clínica General -->
+  @if (tipoActual === 'historia_general') {
+    <app-form-historia-general
+      [cliente]="clienteSel"
+      (onGuardar)="guardarYPdf($event)"
+      (onCancelar)="cancelar()"
+    />
+  }
+
+  <!-- Historia Clínica Dental -->
+  @if (tipoActual === 'historia_dental') {
+    <app-form-historia-dental
+      [cliente]="clienteSel"
+      (onGuardar)="guardarYPdf($event)"
+      (onCancelar)="cancelar()"
+    />
+  }
+
+</mat-dialog-content>
+
+@if (!tipoActual) {
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-flat-button color="primary"
+      [disabled]="form.invalid"
+      (click)="form.get('tipo')?.setValue(form.get('tipo')?.value)">
+      Continuar
+    </button>
+  </mat-dialog-actions>
+}

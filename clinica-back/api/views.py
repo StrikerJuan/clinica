@@ -2,10 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import Modulo, Cliente, Expediente, ExpedienteCliente
+from .models import Modulo, Cliente, Expediente
 from .serializers import (
-   ModuloSerializer, ClienteSerializer,
-   ExpedienteSerializer, ExpedienteClienteSerializer
+   ModuloSerializer, ClienteSerializer, ExpedienteSerializer
 )
 
 class ModuloListView(APIView):
@@ -63,27 +62,32 @@ class ClienteDetailView(APIView):
          return Response(status=status.HTTP_404_NOT_FOUND)
       obj.delete()
       return Response(status=status.HTTP_204_NO_CONTENT)
-
+   
 
 class ExpedienteListView(APIView):
    permission_classes = [IsAuthenticated]
 
    def get(self, request):
-      return Response(ExpedienteSerializer(
-         Expediente.objects.all(), many=True
-      ).data)
-
-
-class ExpedienteClienteListView(APIView):
-   permission_classes = [IsAuthenticated]
-
-   def get(self, request):
-      qs = ExpedienteCliente.objects.select_related('expcli_cli', 'expcli_exp').all()
-      return Response(ExpedienteClienteSerializer(qs, many=True).data)
+      cli_id = request.query_params.get('cliente')
+      qs = Expediente.objects.all().order_by('-expcli_fecha')
+      if cli_id:
+         qs = qs.filter(expcli_cliente_id=cli_id)
+      return Response(ExpedienteSerializer(qs, many=True).data)
 
    def post(self, request):
-      serializer = ExpedienteClienteSerializer(data=request.data)
+      serializer = ExpedienteSerializer(data=request.data)
       if serializer.is_valid():
          serializer.save()
          return Response(serializer.data, status=status.HTTP_201_CREATED)
       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ExpedienteDetailView(APIView):
+   permission_classes = [IsAuthenticated]
+
+   def get(self, request, pk):
+      try:
+         exp = Expediente.objects.get(pk=pk)
+      except Expediente.DoesNotExist:
+         return Response(status=status.HTTP_404_NOT_FOUND)
+      return Response(ExpedienteSerializer(exp).data)
